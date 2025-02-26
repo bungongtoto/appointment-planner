@@ -1,5 +1,5 @@
 import React from "react";
-import { Tile } from "../tile/Tile";
+import { ContactPicker } from "../contactPicker/ContactPicker";
 
 const getTodayString = () => {
   const [month, day, year] = new Date().toLocaleDateString("en-US").split("/");
@@ -29,6 +29,7 @@ export const AppointmentForm = ({
           value={title}
           onChange={(e) => setTitle(e.target.value)}
           placeholder="Name"
+          required
         />
 
         <label htmlFor="date"></label>
@@ -39,6 +40,7 @@ export const AppointmentForm = ({
           min={getTodayString()}
           value={date}
           onChange={(e) => setDate(e.target.value)}
+          required
         />
 
         <label htmlFor="time"></label>
@@ -48,22 +50,10 @@ export const AppointmentForm = ({
           type="time"
           value={time}
           onChange={(e) => setTime(e.target.value)}
+          required
         />
 
-        <label htmlFor="contact-select"></label>
-        <select
-          value={contact}
-          onChange={(e) => setContact(e.target.value)}
-          name="contact"
-          id="contact-select"
-        >
-          <option value={""}>Choose Contact</option>
-          {contacts?.map((contact, index) => (
-            <option key={index} value={contact.name}>
-              {contact.name}
-            </option>
-          ))}
-        </select>
+        <ContactPicker name="contacts" contacts={contacts} contact={contact} setContact={setContact} />
 
         <button type="submit">Add Appointment</button>
       </form>
