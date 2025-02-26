@@ -14,7 +14,7 @@ export const AppointmentsPage = ({
   */
 
   const [name, setName] = useState("");
-  const [contact, setContact] = useState({});
+  const [contact, setContact] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
 
