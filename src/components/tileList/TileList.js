@@ -1,6 +1,6 @@
 import React from "react";
 
-export const TileList = () => {
+export const TileList = ({arrayObject}) => {
   return (
     <div>
       

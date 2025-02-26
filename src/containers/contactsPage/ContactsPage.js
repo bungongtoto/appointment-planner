@@ -10,7 +10,7 @@ export const ContactsPage = ({ contacts, addNewContact }) => {
   contact info and duplicate check
   */
   const [name, setName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("")
+  const [phone, setPhone] = useState("")
   const [email, setEmail] = useState("");
   const [isDuplicateName, setIsDuplicateName] = useState(false)
 
@@ -21,9 +21,9 @@ export const ContactsPage = ({ contacts, addNewContact }) => {
     if the contact name is not a duplicate
     */
     if(!isDuplicateName) {
-      addNewContact(name, phoneNumber, email);
+      addNewContact(name, phone, email);
       setName("");
-      setPhoneNumber("");
+      setPhone("");
       setEmail("");
       setIsDuplicateName(false);
     }
@@ -36,21 +36,21 @@ export const ContactsPage = ({ contacts, addNewContact }) => {
 
   useEffect(() => {
     if (name) {
-      const contactNameList = contacts.map(contact => contact.name);
+      const contactNameList = contacts?.map(contact => contact.name);
       setIsDuplicateName(isDuplicateInList(contactNameList, name));
     }
-  }, [name])
+  }, [name, contacts])
 
   return (
     <div>
       <section>
         <h2>Add Contact</h2>
-        <ContactForm name={name} phoneNumbe={phoneNumber} email={email} setName={setName} setPhoneNumber={setPhoneNumber} setEmail={setEmail} handleSubmit={handleSubmit} />
+        <ContactForm name={name} phone={phone} email={email} setName={setName} setPhone={setPhone} setEmail={setEmail} handleSubmit={handleSubmit} />
       </section>
       <hr />
       <section>
         <h2>Contacts</h2>
-        <TileList contacts={contacts} />
+        <TileList arrayObject={contacts} />
       </section>
     </div>
   );
