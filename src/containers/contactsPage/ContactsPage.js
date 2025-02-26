@@ -20,6 +20,10 @@ export const ContactsPage = ({ contacts, addNewContact }) => {
     Add contact info and clear data
     if the contact name is not a duplicate
     */
+    if (isDuplicateName) {
+      alert("Name already exits, please Change");
+      return
+    }
     if(!isDuplicateName) {
       addNewContact(name, phone, email);
       setName("");
